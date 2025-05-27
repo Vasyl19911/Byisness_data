@@ -1,0 +1,16 @@
+from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error
+
+# 1. Відфільтруй test-частину: фактичні значення з лютого 2024
+test_df = df_sku[(df_sku['ds'] >= '2024-02-01') & (df_sku['ds'] < '2024-03-01')]
+
+# 2. Отримай прогноз на лютий
+forecast_feb = forecast[(forecast['ds'] >= '2024-02-01') & (forecast['ds'] < '2024-03-01')]
+
+# 3. Об'єднай для порівняння
+merged = pd.merge(forecast_feb[['ds', 'yhat']], test_df[['ds', 'y']], on='ds', how='inner')
+
+# 4. Порахуйте метрики
+mae = mean_absolute_error(merged['y'], merged['yhat'])
+
+
+print(f"MAE: {mae}")
