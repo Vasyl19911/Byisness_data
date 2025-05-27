@@ -1,0 +1,11 @@
+# 📉 10. Побудова графіка План vs Факт
+plt.figure(figsize=(10, 5))
+plt.plot(merged['ds'], merged['y'], label='Факт (реальні дані)', marker='o')
+plt.plot(merged['ds'], merged['yhat'], label='План (прогноз)', marker='x')
+plt.title(f"План vs Факт — SKU: {sku_id_to_forecast}, лютий 2024")
+plt.xlabel("Дата")
+plt.ylabel("Кількість продажів")
+plt.grid(True)
+plt.legend()
+plt.xticks(rotation=45)
+plt.tight_layout()
